@@ -16,11 +16,11 @@ class CreateRestaurantsTable extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('photo')->default(null);
+            $table->string('photo')->default("No Disponible");
             //a que ciudad pertenece
-            $table->bigInteger('cityid')->unsigned();
+            $table->bigInteger('city')->unsigned();
             //a que categoria pertenece
-            $table->bigInteger('categoryid')->unsigned();
+            $table->bigInteger('category')->unsigned();
             $table->integer('likes')->unsigned()->default('0');
             $table->integer('phonenumber')->unsigned();
             $table->longText('description');

@@ -17,3 +17,14 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('restaurants', 'API\RestaurantController');
+
+Route::apiResource('categories', 'API\CategoryController');
+
+Route::apiResource('cities', 'API\CityController');
+
+Route::apiResource('comments', 'API\CommentController');
+
+Route::apiResource('favs', 'API\FavController');
+

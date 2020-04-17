@@ -14,8 +14,8 @@ class CreateFavsTable extends Migration
     public function up()
     {
         Schema::create('favs', function (Blueprint $table) {
-            $table->bigInteger('userid')->unsigned();
-            $table->bigInteger('restaurantid')->unsigned();
+            $table->bigInteger('user')->unsigned();
+            $table->bigInteger('restaurant')->unsigned();
             $table->timestamps();
         });
     }

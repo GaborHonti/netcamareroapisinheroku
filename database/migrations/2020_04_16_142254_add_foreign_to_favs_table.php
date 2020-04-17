@@ -14,8 +14,8 @@ class AddForeignToFavsTable extends Migration
     public function up()
     {
         Schema::table('favs', function (Blueprint $table) {
-            $table->foreign('userid')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('restaurantid')->references('id')->on('restaurants')->onDelete('cascade');
+            $table->foreign('user')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('restaurant')->references('id')->on('restaurants')->onDelete('cascade');
         });
     }
 
@@ -27,8 +27,8 @@ class AddForeignToFavsTable extends Migration
     public function down()
     {
         Schema::table('favs', function (Blueprint $table) {
-            $table->dropForeign('userid_users_foreign');
-            $table->dropForeign('restaurantid_restaurants_foreign');
+            $table->dropForeign('user_users_foreign');
+            $table->dropForeign('restaurant_restaurants_foreign');
         });
     }
 }

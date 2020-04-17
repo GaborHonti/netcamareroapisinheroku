@@ -18,8 +18,8 @@ class CreateCommentsTable extends Migration
             $table->longText('content')->default("");
             $table->timestamp('posted_at')->useCurrent();
             //claves ajenas, luego se enlazan en una migracion separada
-            $table->bigInteger('restaurantid')->unsigned();
-            $table->bigInteger('userid')->unsigned();
+            $table->bigInteger('restaurant')->unsigned();
+            $table->bigInteger('user')->unsigned();
             $table->timestamps();
         });
     }
