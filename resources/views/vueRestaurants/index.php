@@ -47,12 +47,24 @@
 </nav>
 
     <div id="app">
-
         <main class="contenedorAll">
             <div class="container generalFont marginT">
                 <div class="row">
                     <div class="col-12">
                     <br>
+                    <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center mb-0 mt-1 pagination-md">
+    <li v-if="pagination.current_page > 1" class="page-item"><a class="page-link" href="#" @click.prevent="changePage(pagination.current_page - 1)"><span>Anterior</span></a></li>
+
+    <li v-for="page in pagesNumber" v-bind:class="[ page == isActived ? 'active' : '']" class="page-item">
+        <a class="page-link" href="#" @click.prevent="changePage(page)">
+            {{page}}
+        </a>
+    </li>
+
+    <li v-if="pagination.current_page < pagination.last_page" class="page-item"><a class="page-link" href="#" @click.prevent="changePage(pagination.current_page + 1)"><span>Siguiente</span></a></li>
+  </ul>
+</nav>
                     <h1 class="generalFont titleAll">Todos los Restaurantes: </h1>
             </div>
             </div>

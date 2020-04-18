@@ -15,14 +15,25 @@ class RestaurantResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'photo' => $this->photo,
-            'likes' => $this->likes,
-            'phonenumber' => $this->phonenumber,
-            'description' => $this->description,
-            'city' =>  $this->ciudadObject,// relación con ciudades
-            'category' =>  $this->categoriaObject, // relación con categorias
+            /*'paginate' => [
+                'total' => $this->total(),
+                'current_page' => $this->currentPage(),
+                'per_page' => $this->perPage(),
+                'last_page' => $this->lastPage(),
+                'from' => $this->firstItem(),
+                'to' => $this->lastpage(),
+            ],*/
+            /*'restaurantes' => [*/
+                'id' => $this->id,
+                'name' => $this->name,
+                'photo' => $this->photo,
+                'likes' => $this->likes,
+                'phonenumber' => $this->phonenumber,
+                'description' => $this->description,
+                'city' =>  $this->ciudadObject,// relación con ciudades
+                'category' =>  $this->categoriaObject, // relación con categorias
+            /*],*/
+
         ];
     }
 }

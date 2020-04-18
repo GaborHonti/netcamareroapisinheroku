@@ -16,9 +16,22 @@ class RestaurantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return RestaurantResource::collection(Restaurant::all());
+        $restaurantes = Restaurant::orderBy('id','ASC')->paginate(6);
+        //return RestaurantResource::collection($restaurantes);
+        return [
+            'pagination' => [
+                'total' => $restaurantes->total(),
+                'current_page' => $restaurantes->currentPage(),
+                'per_page' => $restaurantes->perPage(),
+                'last_page' => $restaurantes->lastPage(),
+                'from' => $restaurantes->firstItem(),
+                'to' => $restaurantes->lastpage(),
+            ],
+            'restaurantes' => $restaurantes
+
+        ];
     }
 
     /**
