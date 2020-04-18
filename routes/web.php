@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.home');
 });
 
-Route::get('/ejemplo' , function(){
-    return view('vueExample.index');
+Route::get('/restaurants' , function(){
+    return view('vueRestaurants.index');
+});
+
+Route::get('/restaurants/{id}' , function($id){
+    return view('vueRestaurants.show', compact('id'));
 });
