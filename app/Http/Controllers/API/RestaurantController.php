@@ -34,6 +34,11 @@ class RestaurantController extends Controller
         ];
     }
 
+    public function getAll()
+    {
+        return RestaurantResource::collection(Restaurant::all());
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -54,12 +59,12 @@ class RestaurantController extends Controller
     {
         $restaurante = json_decode($request->getContent(),true);
 
-        $category = Category::where('name',$restaurante['category'])->get();
+        /*$category = Category::where('name',$restaurante['category'])->get();
         $restaurante['category'] = $category[0]->id;
 
         $city = City::where('name',$restaurante['city'])->get();
         $restaurante['city'] = $city[0]->id;
-
+        */
         $crear = Restaurant::create($restaurante,true);
 
         return new RestaurantResource($crear);

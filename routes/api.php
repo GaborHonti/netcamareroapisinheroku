@@ -20,6 +20,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('restaurants', 'API\RestaurantController');
 
+Route::get('restaurantsAll', 'API\RestaurantController@getAll');
+
 Route::apiResource('categories', 'API\CategoryController');
 
 Route::apiResource('cities', 'API\CityController');
