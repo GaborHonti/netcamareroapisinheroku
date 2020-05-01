@@ -19,7 +19,7 @@ class Restaurant extends Model
     }
 
     public function comments(){
-        return $this->hasMany('App\Comments', 'restaurant');
+        return $this->hasMany('App\Comment', 'restaurant');
     }
     public function favs(){
         return $this->hasMany('App\Fav', 'restaurant');

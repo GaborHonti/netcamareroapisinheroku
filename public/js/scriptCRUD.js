@@ -3,9 +3,15 @@ var elemento = new Vue({
     data: {
         menu:0,
         datos: [],
+        comments: [],
         respuestaBorrado: "",
         editRestaurant: [],
+        editCity: [],
+        editCat: [],
+        borraCity: [],
+        borraCat: [],
         borraRestaurant: [],
+        borraComentario: [],
         cities: [],
         categories: [],
         buscaIdCity: '0',
@@ -17,11 +23,14 @@ var elemento = new Vue({
         newTel: '',
         newDesc: '',
         newName: '',
+        newNameCity: '',
+        newNameCat: '',
     },
     created: function(){
         this.cargaRestaurantes();
         this.cargaCities();
         this.cargaCats();
+        this.cargaComentarios();
     },
     methods:{
         cargaRestaurantes: function(){
@@ -32,11 +41,19 @@ var elemento = new Vue({
                 this.editRestaurant = response.data.data[0];
             })
         },
+        cargaComentarios: function(){
+            axios
+            .get('api/comments')
+            .then((response) => {
+                this.comments = response.data.data
+            })
+        },
         cargaCities: function(){
             axios
             .get('api/cities')
             .then((response) => {
                 this.cities = response.data.data
+                this.editCity = response.data.data[0];
             })
         },
         cargaCats: function(){
@@ -63,6 +80,23 @@ var elemento = new Vue({
                 $('#modalBorrar').modal('hide');
             })
         },
+        borraCiudad: function(id){
+            console.log(id);
+            axios
+            .delete('api/cities/' + id)
+            .then((response) => {
+                this.respuestaBorrado = response.data
+                alert(this.respuestaBorrado);
+                //this.cargaRestaurantes();
+                for(var i= 0; i < this.cities.length; i++){
+                if(id == this.cities[i].id){
+                    this.cities.splice( i , 1);
+                    break;
+                }
+            }
+                $('#modalBorrarCity').modal('hide');
+            })
+        },
         rellenainput: function(id){
             for(var i= 0; i < this.datos.length; i++){
                 if(id == this.datos[i].id){
@@ -72,13 +106,6 @@ var elemento = new Vue({
                     break;
                 }
             }
-            /*axios
-            .get('api/restaurants/' + id)
-            .then((response) => {
-                this.editRestaurant = response.data.data
-                //console.log(this.editRestaurant);
-                //this.cargaRestaurantes();
-            })*/
         },
         rellenaborra: function(id){
             for(var i= 0; i < this.datos.length; i++){
@@ -87,6 +114,136 @@ var elemento = new Vue({
                     break;
                 }
             }
+        },
+        rellenaborraComment: function(id){
+            for(var i= 0; i < this.comments.length; i++){
+                if(id == this.comments[i].id){
+                    this.borraComentario = this.comments[i];
+                    break;
+                }
+            }
+        },
+        borraComment: function(id){
+            console.log(id);
+            axios
+            .delete('api/comments/' + id)
+            .then((response) => {
+                this.respuestaBorrado = response.data
+                alert(this.respuestaBorrado);
+                //this.cargaRestaurantes();
+                for(var i= 0; i < this.comments.length; i++){
+                if(id == this.comments[i].id){
+                    this.comments.splice( i , 1);
+                    break;
+                }
+            }
+                $('#modalBorrarComment').modal('hide');
+            })
+        },
+        //OPERACIONES DE CITY----------------------------------------------------------------------------------------------------
+        rellenainputCity: function(id){
+            for(var i= 0; i < this.cities.length; i++){
+                if(id == this.cities[i].id){
+                    this.editCity = this.cities[i];
+                    break;
+                }
+            }
+        },
+        rellenaborraCity: function(id){
+            for(var i= 0; i < this.cities.length; i++){
+                if(id == this.cities[i].id){
+                    this.borraCity = this.cities[i];
+                    break;
+                }
+            }
+        },
+        guardaCambiosCity: function(id, nombre){
+            //CAMBIAR ORDEN
+                    axios.put('api/cities/' + id, {
+                        name: nombre
+                    })
+                    .then(response => {
+                        console.log(response);
+                        //this.cargaRestaurantes();
+                        for(var i= 0; i < this.cities.length; i++){
+                            if(id == this.cities[i].id){
+                                //alert("update");
+                                this.cities[i].name = nombre;
+                                alert(name);
+                                break;
+                            }
+                        }
+                        for(var i= 0; i < this.datos.length; i++){
+                            if(id == this.datos[i].city.id){
+                                this.datos[i].city.name = nombre;
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert("fallo al actualizar");
+                    });
+            $('#modalEditarCity').modal('hide');
+        },
+        //OPERACIONES CATEGORIA ----------------------------------------------------------------------------------------------------
+        rellenaborraCat: function(id){
+            for(var i= 0; i < this.categories.length; i++){
+                if(id == this.categories[i].id){
+                    this.borraCat = this.categories[i];
+                    break;
+                }
+            }
+        },
+        rellenainputCat: function(id){
+            for(var i= 0; i < this.categories.length; i++){
+                if(id == this.categories[i].id){
+                    this.editCat = this.categories[i];
+                    break;
+                }
+            }
+        },
+        borraCategoria: function(id){
+            console.log(id);
+            axios
+            .delete('api/categories/' + id)
+            .then((response) => {
+                this.respuestaBorrado = response.data
+                alert(this.respuestaBorrado);
+                for(var i= 0; i < this.categories.length; i++){
+                if(id == this.categories[i].id){
+                    this.categories.splice( i , 1);
+                    break;
+                }
+            }
+                $('#modalBorrarCat').modal('hide');
+            })
+        },
+        guardaCambiosCat: function(id, nombre){
+            //CAMBIAR ORDEN
+                    axios.put('api/categories/' + id, {
+                        name: nombre
+                    })
+                    .then(response => {
+                        console.log(response);
+                        for(var i= 0; i < this.categories.length; i++){
+                            if(id == this.categories[i].id){
+                                //alert("update");
+                                this.categories[i].name = nombre;
+                                alert(name);
+                                break;
+                            }
+                        }
+                        for(var i= 0; i < this.datos.length; i++){
+                            if(id == this.datos[i].category.id){
+                                this.datos[i].category.name = nombre;
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert("fallo al actualizar");
+                    });
+            $('#modalEditarCat').modal('hide');
         },
         createNew: function(nombre, categoria, ciudad, descripcion, telefono){
             axios.post('api/restaurants/', {
@@ -104,6 +261,34 @@ var elemento = new Vue({
                     .catch(error => {
                         console.log(error);
                         alert("fallo al crear restaurante, faltan datos");
+                    });
+        },
+        createNewCity: function(nombre){
+            axios.post('api/cities/', {
+                        name: nombre,
+                    })
+                    .then(response => {
+                        console.log(response);
+                        $('#modalNewCity').modal('hide');
+                        this.cargaCities();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert("fallo al crear restaurante, faltan datos");
+                    });
+        },
+        createNewCat: function(nombre){
+            axios.post('api/categories/', {
+                        name: nombre,
+                    })
+                    .then(response => {
+                        console.log(response);
+                        $('#modalNewCat').modal('hide');
+                        this.cargaCats();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        alert("fallo al crear categoria, faltan datos");
                     });
         },
         guardaCambios: function(id, nombre, categoria, ciudad){
@@ -132,6 +317,7 @@ var elemento = new Vue({
                     });
             $('#modalEditar').modal('hide');
         },
+
         busca: function(){
             //coger city
             console.log(this.buscaIdCity);

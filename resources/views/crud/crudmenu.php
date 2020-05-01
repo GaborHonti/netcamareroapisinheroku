@@ -7,7 +7,7 @@
    <!-- CSRF Token -->
    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>NetCamarero: Restaurantes</title>
+    <title>NetCamarero: CRUD</title>
 
     <!-- Scripts
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -48,12 +48,15 @@
                 <ul class="menu-list">
                     <li @click="menu=0" class="hand-option"><a
                                 :class="{'is-active' : menu==0 }">Dashboard</a></li>
-                    <li @click="menu=1" class="hand-option"><a :class="{'is-active' : menu==1 }">Restaurantes</a>
+                    <li @click="menu=1" class="hand-option">
+                        <a :class="{'is-active' : menu==1 }">Restaurantes</a>
                     </li>
                     <li @click="menu=2" class="hand-option"><a
-                                :class="{'is-active' : menu==2 }">Cargos</a></li>
+                                :class="{'is-active' : menu==2 }">Ciudades</a></li>
                     <li @click="menu=3" class="hand-option"><a
-                                :class="{'is-active' : menu==3 }">Empleados</a></li>
+                                :class="{'is-active' : menu==3 }">Categorías</a></li>
+                    <li @click="menu=4" class="hand-option"><a
+                                :class="{'is-active' : menu==4 }">Comentarios</a></li>
                 </ul>
             </aside>
         </div>
@@ -239,37 +242,297 @@
                         </div>
                     </div>
                     <!-- End of Modal -->
-
                 </div>
             </div>
         </div>
         <div class="column" v-if="menu==2">
             <div class="columns">
                 <div class="column text-center">
-                    <h3>Cargos</h3>
+                    <h3>Ciudades</h3>
                 </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNewCity">AÑADIR NUEVO CIUDAD</button>
             </div>
             <div class="columns">
                 <div class="column">
-                   Tabla Cargos
+                <br>
+                    <table id="miTabla" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th class="th-sm">ID
+
+                            </th>
+                            <th class="th-sm">Nombre
+
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="city in cities ">
+                                <td>{{city.id}}</td>
+                                <td>{{city.name}}</td>
+                                <td><button type="button" class="btn btn-danger"
+                                data-toggle="modal" data-target="#modalBorrarCity" @click="rellenaborraCity(city.id)">Borrar</button></td>
+                                <td><button type="button" class="btn btn-success"
+                                data-toggle="modal" data-target="#modalEditarCity" @click="rellenainputCity(city.id)">Editar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <!-- Modal Añadir Ciudad -->
+                     <div class="modal fade" id="modalNewCity" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Añadir Nueva Ciudad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    Nombre:<input type="text" v-model="newNameCity">
+                                </div>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-success" @click="createNewCity(newNameCity)">Añadir Cidad</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End of Modal -->
+                    <!-- Modal Borrar Ciudad -->
+                    <div class="modal fade" id="modalBorrarCity" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Borrar Ciudad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿SEGURO QUE DESEA BORRAR LA CIUDAD?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" @click="borraCiudad(borraCity.id)">Borrar Permanentemente</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End of Modal -->
+                    <!-- Modal Editar Ciudad -->
+                    <div class="modal fade" id="modalEditarCity" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Ciudad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-between">
+                                    ID:<input type="text" disabled :value="editCity.id">
+                                </div>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    Nombre:<input type="text" v-model="editCity.name">
+                                </div>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-success" @click="guardaCambiosCity(editCity.id,editCity.name)">Guardar Cambios</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End of Modal -->
                 </div>
             </div>
         </div>
         <div class="column" v-if="menu==3">
             <div class="columns">
                 <div class="column text-center">
-                    <h3>Empleado</h3>
+                    <h3>Categorías</h3>
                 </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNewCat">AÑADIR NUEVA CATEGORÍA</button>
                 <div class="column">
-                   Tabla Empleados
+                <br>
+                <table id="miTabla" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th class="th-sm">ID
+
+                            </th>
+                            <th class="th-sm">Nombre
+
+                            </th>
+                            <th class="th-sm">Icon
+
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="category in categories">
+                                <td>{{category.id}}</td>
+                                <td>{{category.name}}</td>
+                                <td>{{category.icon}}</td>
+                                <td><button type="button" class="btn btn-danger"
+                                data-toggle="modal" data-target="#modalBorrarCat" @click="rellenaborraCat(category.id)">Borrar</button></td>
+                                <td><button type="button" class="btn btn-success"
+                                data-toggle="modal" data-target="#modalEditarCat" @click="rellenainputCat(category.id)">Editar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                     <!-- Modal Añadir Categoria -->
+                     <div class="modal fade" id="modalNewCat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Añadir Nueva Categoría</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    Nombre:<input type="text" v-model="newNameCat">
+                                </div>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-success" @click="createNewCat(newNameCat)">Añadir Cidad</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End of Modal -->
+                    <!-- Modal Borrar Categoria -->
+                    <div class="modal fade" id="modalBorrarCat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Borrar Categoría</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿SEGURO QUE DESEA BORRAR LA CATEGORÍA?
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-danger" @click="borraCategoria(borraCat.id)">Borrar Permanentemente</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End of Modal -->
+                    <!-- Modal Editar Categoria -->
+                    <div class="modal fade" id="modalEditarCat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar Categoría</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="d-flex justify-content-between">
+                                    ID:<input type="text" disabled :value="editCat.id">
+                                </div>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    Nombre:<input type="text" v-model="editCat.name">
+                                </div>
+                                <br>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-success" @click="guardaCambiosCat(editCat.id,editCat.name)">Guardar Cambios</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- End of Modal -->
+                </div>
+            </div>
+        </div>
+        <div class="column" v-if="menu==4">
+            <div class="columns">
+                <div class="column text-center">
+                    <h3>Comentarios</h3>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column">
+                    <br>
+                    <table id="miTabla" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <thead>
+                          <tr>
+                            <th class="th-sm">ID
+
+                            </th>
+                            <th class="th-sm">Content
+
+                            </th>
+                            <th class="th-sm">Posted At
+
+                            </th>
+                            <th class="th-sm">Restaurant
+
+                            </th>
+                            <th class="th-sm">User
+
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="comment in comments">
+                                <td>{{comment.id}}</td>
+                                <td>{{comment.content}}</td>
+                                <td>{{comment.posted_at}}</td>
+                                <td>{{comment.restaurant.name}}</td>
+                                <td>{{comment.user.name}}</td>
+                                <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalBorrarComment" @click="rellenaborraComment(comment.id)">Borrar</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Modal Borrar Comentario -->
+                    <div class="modal fade" id="modalBorrarComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Borrar Comentario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿SEGURO QUE DESEA BORRAR EL COMENTARIO?
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-danger" @click="borraComment(borraComentario.id)">Borrar Permanentemente</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    <!-- End of Modal -->
+
                 </div>
             </div>
         </div>
     </div>
     <div class="columns margin0 text-center vertical-center personal-menu">
-        <div class="column">Empleados 0</div>
-        <div class="column">Restaurantes 0</div>
-        <div class="column">Cargo 0</div>
+        <div class="column">Fin Zona de Pruebas</div>
     </div>
 </div>
 
