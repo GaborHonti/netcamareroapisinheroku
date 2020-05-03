@@ -30,3 +30,6 @@ Route::apiResource('comments', 'API\CommentController');
 
 Route::apiResource('favs', 'API\FavController');
 
+Route::post('/registro', 'API\AuthController@register');
+Route::post('/login', 'API\AuthController@login');
+
