@@ -21,6 +21,10 @@ Route::get('/crudmenu', function () {
     return view('crud.crudmenu');
 });
 
+Route::get('/dashboard', function () {
+    return view('crud.dashboard');
+});
+
 Route::get('/restaurants' , function(){
     return view('vueRestaurants.index');
 });

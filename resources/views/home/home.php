@@ -83,7 +83,7 @@
                 <a href="/restaurants">Ver todos los restaurantes</a>
             </div>
             <div class="col-12 col-md-6">
-                <a href="/crudmenu">CRUD DE RESTAURANTES</a>
+                <a href="/dashboard">CRUD DE RESTAURANTES</a>
             </div>
         </div>
     </div>

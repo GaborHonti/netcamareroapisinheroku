@@ -41,6 +41,198 @@ var elemento = new Vue({
                 this.editRestaurant = response.data.data[0];
             })
         },
+
+        sendDataRestaurants: function(){
+            var data = [];
+            var labels = [];
+            var contador = 0;
+            for(var i= 0; i < this.categories.length; i++){
+                for(var j= 0; j < this.datos.length; j++){
+                    if(this.datos[j].category.name == this.categories[i].name){
+                        contador++;
+                    }
+                }
+                data.push(contador);
+                labels.push(this.categories[i].name);
+                contador = 0;
+            }
+            this.renderChartRestaurants(data, labels);
+
+        },
+
+        sendDataCiudades: function(){
+            var data = [];
+            var labels = [];
+            var contador = 0;
+            for(var i= 0; i < this.cities.length; i++){
+                for(var j= 0; j < this.datos.length; j++){
+                    if(this.datos[j].city.name == this.cities[i].name){
+                        contador++;
+                    }
+                }
+                data.push(contador);
+                labels.push(this.cities[i].name);
+                contador = 0;
+            }
+            this.renderChartCities(data, labels);
+
+        },
+
+        sendData: function(){
+            data = [this.datos.length, this.cities.length, this.categories.length, this.comments.length];
+            labels =  ['Restaurantes', 'Ciudades', 'Categorías', 'Comentarios'];
+            this.renderChart(data, labels);
+        },
+
+        renderChartRestaurants: function(data, labels){
+            var ctx = document.getElementById("myChartRest").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Restaurantes por Categorías',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                    }
+            });
+        },
+
+        renderChartCities: function(data, labels){
+            var ctx = document.getElementById("myChartCity").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Restaurantes por Ciudades',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                    }
+            });
+        },
+
+        renderChart: function(data, labels){
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Elementos Por Barras',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                    }
+            });
+            var ctx = document.getElementById("myChart2").getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total de elementos',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                    }
+            });
+        },
+
         cargaComentarios: function(){
             axios
             .get('api/comments')
