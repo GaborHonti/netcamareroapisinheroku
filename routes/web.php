@@ -25,6 +25,14 @@ Route::get('/dashboard', function () {
     return view('crud.dashboard');
 });
 
+Route::get('/registrar', function () {
+    return view('auth.register');
+});
+
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
 Route::get('/restaurants' , function(){
     return view('vueRestaurants.index');
 });

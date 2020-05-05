@@ -1,18 +1,9 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>NetCamarero</title>
-
-    <!-- Scripts
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    -->
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar a NetCamarero</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -29,8 +20,6 @@
 
 </head>
 <body>
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-danger" id="prinNav">
 <a class="navbar-brand titulo" href="/"> <img src="img/brand.png" class="netCB"> NetCamarero</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,54 +28,28 @@
     <div class="collapse navbar-collapse navi" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="/registrar">Entrar</a>
+          <a class="nav-link" href="/login">Entrar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/registrar">Registrar</a>
         </li>
       </ul>
     </div>
-  </nav>
+</nav>
 
-  <div class="container-fluid main">
-        <div class="row">
-             <div class="col-12 portada">
-             <h3 class="catch">¿Tienes hambre? ¿Dónde quieres comer?</h3>
-                <p class="afterCatch">¡Elige entre varios restaurantes de la Vega Baja!</p>
-             </div>
-        </div>
-        <div class="row portada">
-            <div class="col-12 inputCont">
-                <span class="span">Buscar Según:</span>
-                <select name="Criterios">
+<div class="app">
+    <h1>Entra En Tu cuenta</h1>
+    Correo: <input type="email" v-model="mail"> <br> <br>
+    Password: <input type="password" v-model="passwd">
+    <button @click="enviar()"> Registrar</button>
 
-                    <option>Localidad</option>
+    {{ token }}
+</div>
 
-                    <option>Categoría</option>
 
-                    <option>Nombre</option>
-
-                </select>
-                <input type="text" class="inputText" placeholder="busca">
-                <button type="button" class="btn btn-danger">Buscar</button>
-            </div>
-        </div>
-    </div>
-    <div class="container main2">
-        <div class="row">
-            <div class="col-12">
-            <h3 class="catch2">Selección</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-6">
-                <a href="/restaurants">Ver todos los restaurantes</a>
-            </div>
-            <div class="col-12 col-md-6">
-                <a href="/dashboard">CRUD DE RESTAURANTES</a>
-            </div>
-        </div>
-    </div>
+<!-- End of APP -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="/js/scriptLogin.js"></script>
 </body>
 </html>
-
