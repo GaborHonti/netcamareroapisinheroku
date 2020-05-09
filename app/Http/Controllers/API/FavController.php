@@ -20,6 +20,10 @@ class FavController extends Controller
     {
         return FavResource::collection(Fav::all());
     }
+    public function getMyFavs($id)
+    {
+        return FavResource::collection(Fav::where('user' , $id)->get());
+    }
 
     /**
      * Show the form for creating a new resource.

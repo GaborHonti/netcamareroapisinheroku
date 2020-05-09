@@ -38,7 +38,52 @@
 </nav>
 
 <div id="app">
-    {{ info }}
+    <div class="usermenu generalFont">
+        <div v-if="info=='sin acceso'">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="generalFont mtop5 wColor">¡Oops! Parece que no tienes permiso para ver esta página.... ¡Logueate!</h1>
+                        <button style="cursor:pointer" class="btn btn-danger text-center generalFont" onclick="window.location='/';">Redireccioname</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-else>
+            <div class="container">
+                <div class="flexft mtop">
+                    <img src="img/defaultuser.png" class="profilepic">
+                    <h1 class="hello">Bienvenido User!</h1>
+                </div>
+
+                <p class="pG restaurantTitle">En estos menús encontrarás opciones útiles como ver tus restaurantes favoritos, historial de likes, y editar tu foto de perfil.</p>
+
+                <ul class="nav nav-tabs menupoints">
+                <li><a data-toggle="tab" href="#menu1" class="editP">Editar Perfil</a></li>
+                <li><a data-toggle="tab" href="#menu2">Ver Favoritos</a></li>
+                <!-- <li><a data-toggle="tab" href="#menu3">Ver Historial</a></li>-->
+                </ul>
+
+                <div class="tab-content">
+                    <div id="menu1" class="tab-pane fade">
+                    <br>
+                    <button style="cursor:pointer" class="btn btn-danger text-center generalFont" onclick="window.location='/';">Redireccioname</button>
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+                        <div v-for="fav in favs">
+                            <h1 class="restaurantTitle">{{fav.restaurant.name}}</h1>
+                            <div class="flexbody">
+                            <p class="desc">{{fav.restaurant.description}} <br>
+                            <button class="btn btn-danger"><a :href="'/restaurants/'+fav.restaurant.id" class="enlaceVer">Ver Restaurante</a></button>
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 

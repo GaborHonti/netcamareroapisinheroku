@@ -311,3 +311,11 @@ body{
 .generalFont{
     font-family: 'Amatic SC', cursive;
 }
+
+.mtop5{
+    margin-top: 11%;
+}
+
+.wColor{
+    color: white;
+}
