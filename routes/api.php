@@ -33,3 +33,9 @@ Route::apiResource('favs', 'API\FavController');
 Route::post('/registro', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
+
+//testeo de una ruta protegida de return de informacion de usuario
+Route::middleware('auth:api')->group(function () {
+    Route::get('userinfo', 'API\UserController@getUserInfo');
+});
+

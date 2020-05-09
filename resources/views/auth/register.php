@@ -38,13 +38,49 @@
 </nav>
 
 <div class="app">
-    <h1>¡Registra a NetCamarero hoy!</h1>
-    Nombre: <input type="text" v-model="nombre"><br> <br>
-    Correo: <input type="email" v-model="mail"> <br> <br>
-    Password: <input type="password" v-model="passwd">
-    <button @click="enviar()"> Registrar</button>
 
-    {{ token }}
+    <div class="container-fluid chop">
+        <div class="container format formContPrin">
+
+            <h2 class="format">Crea una cuenta nueva: </h2>
+            <a href="#">Ya tienes una cuenta? Entra aquí.</a>
+
+
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" id="name" name="name" v-model="nombre">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="email" name="email" v-model="mail">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="password" v-model="passwd">
+            </div>
+
+            <!-- CAMPO DE CONFIRMAR CONTRASEÑA
+
+            <div class="form-group">
+                <label for="password_confirmation">Confirmar Contraseña:</label>
+                <input type="password" class="form-control" id="password_confirmation"
+                    name="password_confirmation">
+            </div>
+
+             -->
+
+            <div class="form-group">
+                <button style="cursor:pointer" @click="enviar()" class="btn btn-danger">Crea Tu Cuenta</button>
+            </div>
+
+                {{ token }}
+            </div>
+
+
+    </div>
+
 </div>
 
 

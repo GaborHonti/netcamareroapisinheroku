@@ -17,6 +17,7 @@ var aplicacion = new Vue({
             .then(response => {
                 console.log(response);
                 this.token = response.data.success.token
+                localStorage.setItem("token", this.token);
             })
             .catch(error => {
                 console.log(error);

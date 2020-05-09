@@ -38,12 +38,28 @@
 </nav>
 
 <div class="app">
-    <h1>Entra En Tu cuenta</h1>
-    Correo: <input type="email" v-model="mail"> <br> <br>
-    Password: <input type="password" v-model="passwd">
-    <button @click="enviar()"> Registrar</button>
+    <div class="container-fluid chop2">
+        <div class="container format2 formContPrin2">
+            <h2>Entra en tu cuenta: </h2>
+                <a href="#">No tienes cuenta aún? Regístrate aquí!</a>
 
-    {{ token }}
+                    <div class="form-group">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" v-model="mail" class="form-control" id="email" name="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" v-model="passwd" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="form-group">
+                        <button style="cursor:pointer" class="btn btn-danger" @click="enviar()">Login</button>
+                    </div>
+
+
+                {{ token }}
+        </div>
+    </div>
 </div>
 
 
@@ -53,3 +69,4 @@
 <script src="/js/scriptLogin.js"></script>
 </body>
 </html>
+

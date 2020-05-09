@@ -33,6 +33,10 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::get('/profile', function () {
+    return view('user.profile');
+});
+
 Route::get('/restaurants' , function(){
     return view('vueRestaurants.index');
 });
