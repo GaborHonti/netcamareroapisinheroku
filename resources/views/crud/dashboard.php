@@ -167,6 +167,11 @@
                                 </div>
                                 <br>
                                 <div class="d-flex justify-content-between">
+                                <!--<img :src="previewImage" class="uploading-image" /> -->
+                                <input type="file" accept="image/*" @change=uploadImage id="fileInput">
+                                </div>
+                                <br>
+                                <div class="d-flex justify-content-between">
                                     ID Localidad: <input type="text" @keyup="buscav3()" v-model="newCity">
                                 </div>
                                 <br>

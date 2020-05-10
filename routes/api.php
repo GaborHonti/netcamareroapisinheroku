@@ -40,3 +40,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('myFavs/{id}', 'API\FavController@getMyFavs');
 });
 
+//rutas para descargar y subir fotos de restaurantes
+Route::get('downloadFile/{filename}' , 'API\FileController@download');
+Route::post('uploadFile' , 'API\FileController@upload');
+

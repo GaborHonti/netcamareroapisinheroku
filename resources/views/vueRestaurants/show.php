@@ -51,7 +51,7 @@
         <div class="container-fluid contDetalles">
         <div class="row mainC">
             <div class="col-12 col-md-3">
-            <img :src="info.photo" class="imgrest">
+            <img :src="'http://netcamareroapi.test/' + info.photo" class="imgrest">
             </div>
             <div class="col-12 col-md-9">
                 <div class="row ml-2 mr-1">

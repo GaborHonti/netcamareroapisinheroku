@@ -25,6 +25,9 @@ var elemento = new Vue({
         newName: '',
         newNameCity: '',
         newNameCat: '',
+        previewImage: null,
+        fileName: '',
+        selectedFile: ''
     },
     created: function(){
         this.cargaRestaurantes();
@@ -33,6 +36,26 @@ var elemento = new Vue({
         this.cargaComentarios();
     },
     methods:{
+        uploadImage(e){
+            this.selectedFile = event.target.files[0]
+            const image = e.target.files[0];
+            var name = document.getElementById('fileInput');
+            //alert('Selected file: ' + name.files.item(0).name);
+            this.fileName = name.files.item(0).name;
+            alert(this.fileName);
+            const reader = new FileReader();
+            reader.readAsDataURL(image);
+            reader.onload = e =>{
+                this.previewImage = e.target.result;
+                console.log(this.previewImage);
+            };
+        },
+        onUpload() {
+            alert(this.selectedFile.name);
+            const formData = new FormData();
+            formData.append('image', this.selectedFile, this.selectedFile.name);
+            axios.post('api/uploadFile', formData)
+        },
         cargaRestaurantes: function(){
             axios
             .get('api/restaurantsAll')
@@ -443,10 +466,12 @@ var elemento = new Vue({
                         category: categoria,
                         city: ciudad,
                         description: descripcion,
-                        phonenumber: telefono
+                        phonenumber: telefono,
+                        photo: this.fileName
                     })
                     .then(response => {
                         console.log(response);
+                        this.onUpload();
                         $('#modalNewRestaurant').modal('hide');
                         this.cargaRestaurantes();
                     })
@@ -488,7 +513,7 @@ var elemento = new Vue({
                     axios.put('api/restaurants/' + id, {
                         name: nombre,
                         category: categoria,
-                        city: ciudad
+                        city: ciudad,
                     })
                     .then(response => {
                         console.log(response);
@@ -552,3 +577,5 @@ var elemento = new Vue({
         },
     }
 })
+
+

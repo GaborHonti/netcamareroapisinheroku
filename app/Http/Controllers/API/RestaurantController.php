@@ -65,6 +65,7 @@ class RestaurantController extends Controller
         $city = City::where('name',$restaurante['city'])->get();
         $restaurante['city'] = $city[0]->id;
         */
+        $restaurante['photo'] = 'restaurantimgs/' . $restaurante['photo'];
         $crear = Restaurant::create($restaurante,true);
 
         return new RestaurantResource($crear);
