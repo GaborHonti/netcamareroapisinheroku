@@ -42,7 +42,6 @@ var elemento = new Vue({
             var name = document.getElementById('fileInput');
             //alert('Selected file: ' + name.files.item(0).name);
             this.fileName = name.files.item(0).name;
-            alert(this.fileName);
             const reader = new FileReader();
             reader.readAsDataURL(image);
             reader.onload = e =>{
@@ -51,7 +50,6 @@ var elemento = new Vue({
             };
         },
         onUpload() {
-            alert(this.selectedFile.name);
             const formData = new FormData();
             formData.append('image', this.selectedFile, this.selectedFile.name);
             axios.post('api/uploadFile', formData)

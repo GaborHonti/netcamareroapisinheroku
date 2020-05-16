@@ -11,6 +11,10 @@ class FileController extends Controller
         return response()->download(public_path('restaurantimgs/' . $filename) , 'Restaurant Image');
     }
 
+
+    //TODO AÑADIR CAMBIO DE NOMBRE DE FOTO
+
+
     public function upload(Request $request){
         $imageName = $request->image->getClientOriginalName() /*. '.' . $request->image->getClientOriginalExtension()*/;
         $request->image->move(public_path('restaurantimgs'), $imageName);
