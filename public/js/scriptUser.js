@@ -4,6 +4,7 @@ var app = new Vue({
       info: 'LOADING...',
       token: '',
       favs: [],
+      logged: 0
     },
     created() {
         $('.editP').click();
@@ -21,8 +22,11 @@ var app = new Vue({
 
             var hayToken = false;
             this.token = localStorage.getItem("token");
+            console.log(this.logged);
             if(this.token != null){
                 hayToken =  true;
+                this.logged = 1;
+                console.log(this.logged);
             }
 
             return hayToken;
@@ -50,5 +54,9 @@ var app = new Vue({
                     'Authorization':'Bearer '+this.token}})
             .then(response => (this.favs = response.data))
         },*/
+        salir: function(){
+            localStorage.removeItem("token");
+            location.reload();
+        }
     },
 })

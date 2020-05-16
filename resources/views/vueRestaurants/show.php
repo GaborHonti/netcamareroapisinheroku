@@ -29,6 +29,7 @@
 
 </head>
 <body>
+<div id="app">
 <nav class="navbar navbar-expand-lg navbar-light bg-danger" id="prinNav">
 <a class="navbar-brand titulo" href="/"> <img src="../img/brand.png" class="netCB"> NetCamarero</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,17 +37,21 @@
     </button>
     <div class="collapse navbar-collapse navi" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
+      <li class="nav-item" v-if="esFav==0">
           <a class="nav-link" href="/login">Entrar</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" v-if="esFav==0">
           <a class="nav-link" href="/registrar">Registrar</a>
+        </li>
+        <li class="nav-item" v-if="esFav==-1 || esFav==1">
+          <a class="nav-link" href="/profile">Perfil</a>
+        </li>
+        <li class="nav-item" v-if="esFav==-1 || esFav==1">
+          <a class="nav-link" href="#" @click="salir()">Salir</a>
         </li>
       </ul>
     </div>
 </nav>
-
-    <div id="app">
 
         <div class="container-fluid contDetalles">
         <div class="row mainC">

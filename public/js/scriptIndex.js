@@ -2,6 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
       message: 'Hello Vue!',
+      logged: 0,
       pagination:{
         'total': 0,
         'current_page': 0,
@@ -13,6 +14,10 @@ var app = new Vue({
     },
     created(){
         this.getRestaurantes(1);
+        token = localStorage.getItem("token");
+        if(token != null){
+           this.logged = 1; //esta logged el user
+        }
     },
     /*mounted () {
         axios
@@ -38,6 +43,10 @@ var app = new Vue({
             .get('api/restaurants?page='+page)
             .then(response => {(this.message = response.data.restaurantes.data),
           this.pagination = response.data.pagination})
+        },
+        salir: function(){
+            localStorage.removeItem("token");
+            location.reload();
         }
     },
     computed: {
