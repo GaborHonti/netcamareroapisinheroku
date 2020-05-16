@@ -70,6 +70,11 @@
                     <div class="col-12">
                         <p class="detalle2">{{info.description}}</p>
                     </div>
+                    <div class="col-12">
+                        <button v-if="esFav == 0" class="btn btn-danger" @click="guardaFav()">Añadir a Favoritos</button>
+                        <button v-if="esFav == 1" class="btn btn-success">¡Ya está en los Favoritos!</button>
+                        <button v-if="esFav == -1" class="btn btn-warning">Logueate para añadir a Favoritos</button>
+                    </div>
                 </div>
 
             </div>

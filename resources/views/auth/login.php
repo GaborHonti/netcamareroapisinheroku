@@ -55,9 +55,6 @@
                     <div class="form-group">
                         <button style="cursor:pointer" class="btn btn-danger" @click="enviar()">Login</button>
                     </div>
-
-
-                {{ token }}
         </div>
     </div>
 </div>

@@ -73,9 +73,10 @@
                         <div v-for="fav in favs">
                             <h1 class="restaurantTitle">{{fav.restaurant.name}}</h1>
                             <div class="flexbody">
-                            <p class="desc">{{fav.restaurant.description}} <br>
-                            <button class="btn btn-danger"><a :href="'/restaurants/'+fav.restaurant.id" class="enlaceVer">Ver Restaurante</a></button>
-                            </p>
+                                <img :src="'http://netcamareroapi.test/' + fav.restaurant.photo" class="favImg">
+                                <p class="desc wColor">{{fav.restaurant.description}} <br>
+                                <button class="btn btn-danger"><a :href="'/restaurants/'+fav.restaurant.id" class="enlaceVer">Ver Restaurante</a></button>
+                                </p>
                             </div>
                         </div>
                     </div>

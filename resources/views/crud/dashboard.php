@@ -44,6 +44,7 @@
         <a @click="menu=2" href="#">Ciudades</a>
         <a @click="menu=3" href="#">Categorías</a>
         <a @click="menu=4" href="#">Comentarios</a>
+        <a><button style="cursor:pointer" class="btn btn-danger text-center generalFont" onclick="window.location='/';">Volver al Inicio</button></a>
     </div>
 
     <div class="content">

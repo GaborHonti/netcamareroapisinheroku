@@ -460,6 +460,7 @@ var elemento = new Vue({
                     });
             $('#modalEditarCat').modal('hide');
         },
+        //NUEVO RESTAURANTE
         createNew: function(nombre, categoria, ciudad, descripcion, telefono){
             axios.post('api/restaurants/', {
                         name: nombre,

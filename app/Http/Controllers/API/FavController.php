@@ -44,13 +44,13 @@ class FavController extends Controller
     public function store(Request $request)
     {
         $fav = json_decode($request->getContent(),true);
-
+        /*
         $restaurant = Restaurant::where('name',$fav['restaurant'])->get();
         $fav['restaurant'] = $restaurant[0]->id;
 
         $user = User::where('name',$fav['user'])->get();
         $fav['user'] = $user[0]->id;
-
+        */
         $crear = Fav::create($fav,true);
 
         return new FavResource($crear);

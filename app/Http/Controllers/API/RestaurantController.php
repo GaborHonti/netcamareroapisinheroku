@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Restaurant;
 use App\Category;
 use App\City;
+use App\Fav;
 use App\Http\Resources\RestaurantResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantController extends Controller
 {
@@ -71,6 +73,7 @@ class RestaurantController extends Controller
         return new RestaurantResource($crear);
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -117,5 +120,18 @@ class RestaurantController extends Controller
         if($restaurant->delete()){
             return "Se ha borrado con éxito";
         }
+    }
+
+    public function esFav($idUser , $idRest){
+        //Desarrollar lógica para si hay fav o no
+        $respuesta = 0; //----> respuesta por defecto, no hay fav, devuelve un 0
+
+        $restaurant = Fav::where('user' , $idUser)->where('restaurant' , $idRest)->first();
+
+        if($restaurant['user'] != null){
+            $respuesta = 1; // ----> si es fav
+        }
+
+        return $respuesta;
     }
 }

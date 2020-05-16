@@ -18,6 +18,7 @@ var aplicacion = new Vue({
                 console.log(response);
                 this.token = response.data.success.token
                 localStorage.setItem("token", this.token);
+                location.replace('/profile');
             })
             .catch(error => {
                 console.log(error);

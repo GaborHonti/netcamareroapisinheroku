@@ -34,7 +34,7 @@ Route::post('/registro', 'API\AuthController@register');
 Route::post('/login', 'API\AuthController@login');
 
 
-//testeo de una ruta protegida de return de informacion de usuario
+//rutas protegidas
 Route::middleware('auth:api')->group(function () {
     Route::get('userinfo', 'API\UserController@getUserInfo');
     Route::get('myFavs/{id}', 'API\FavController@getMyFavs');
@@ -43,4 +43,7 @@ Route::middleware('auth:api')->group(function () {
 //rutas para descargar y subir fotos de restaurantes
 Route::get('downloadFile/{filename}' , 'API\FileController@download');
 Route::post('uploadFile' , 'API\FileController@upload');
+
+//ruta para obtener si un restaurante es fav o no
+Route::get('restaurants/esFav/{idUser}/{idRest}' , 'API\RestaurantController@esFav');
 

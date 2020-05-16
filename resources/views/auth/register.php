@@ -75,7 +75,6 @@
                 <button style="cursor:pointer" @click="enviar()" class="btn btn-danger">Crea Tu Cuenta</button>
             </div>
 
-                {{ token }}
             </div>
 
 
