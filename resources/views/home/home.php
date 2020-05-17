@@ -64,17 +64,17 @@
         <div class="row portada">
             <div class="col-12 inputCont">
                 <span class="span">Buscar Según:</span>
-                <select name="Criterios">
+                <select id="selectCriterio" name="Criterios">
 
-                    <option>Localidad</option>
+                    <option value="localidad">Localidad</option>
 
-                    <option>Categoría</option>
+                    <option value="categoria">Categoría</option>
 
-                    <option>Nombre</option>
+                    <option value="nombre">Nombre</option>
 
                 </select>
-                <input type="text" class="inputText" placeholder="busca">
-                <button type="button" class="btn btn-danger">Buscar</button>
+                <input type="text" class="inputText" v-model="valor">
+                <button type="button" class="btn btn-danger" @click="busca()">Buscar</button>
             </div>
         </div>
     </div>

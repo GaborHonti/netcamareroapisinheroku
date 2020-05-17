@@ -73,6 +73,28 @@ class RestaurantController extends Controller
         return new RestaurantResource($crear);
     }
 
+    //LÓGICAS PARA BUSCAR SEGÚN: >>>>> localidad >>>> categoria >>>> nombre
+
+    public function getLocalidades($criterio){
+        //obtenemos localidad con en nombre introducido
+        $localidad = City::where('name',$criterio)->first();
+
+        if($localidad['id'] != null){
+            $restaurantes = Restaurant::where('city',$localidad['id'])->get();
+
+            return $restaurantes;
+        } else{
+            return "no";
+        }
+
+    }
+    public function getCategorias($criterio){
+
+    }
+    public function getNombres($criterio){
+
+    }
+
 
     /**
      * Display the specified resource.

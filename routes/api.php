@@ -47,3 +47,9 @@ Route::post('uploadFile' , 'API\FileController@upload');
 //ruta para obtener si un restaurante es fav o no
 Route::get('restaurants/esFav/{idUser}/{idRest}' , 'API\RestaurantController@esFav');
 
+//Rutas para buscar restaurantes segun: >>>>> localidad >>>> categoria >>>> nombre
+Route::get('localidad/{criterio}', 'API\RestaurantController@getLocalidades');
+Route::get('categoria/{criterio}', 'API\RestaurantController@getCategorias');
+Route::get('nombre/{criterio}', 'API\RestaurantController@getNombres');
+
+

@@ -41,6 +41,10 @@ Route::get('/restaurants' , function(){
     return view('vueRestaurants.index');
 });
 
+Route::get('/busca' , function(){
+    return view('home.busca');
+});
+
 Route::get('/restaurants/{id}' , function($id){
     return view('vueRestaurants.show', compact('id'));
 });
