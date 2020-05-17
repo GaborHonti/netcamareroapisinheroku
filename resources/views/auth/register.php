@@ -61,15 +61,15 @@
                 <input type="password" class="form-control" id="password" name="password" v-model="passwd">
             </div>
 
-            <!-- CAMPO DE CONFIRMAR CONTRASEÑA
+            <!-- CAMPO DE CONFIRMAR CONTRASEÑA  -->
 
             <div class="form-group">
                 <label for="password_confirmation">Confirmar Contraseña:</label>
                 <input type="password" class="form-control" id="password_confirmation"
-                    name="password_confirmation">
+                    name="password_confirmation" v-model="confPass">
             </div>
 
-             -->
+
 
             <div class="form-group">
                 <button style="cursor:pointer" @click="enviar()" class="btn btn-danger">Crea Tu Cuenta</button>

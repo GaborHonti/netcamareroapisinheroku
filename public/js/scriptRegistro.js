@@ -5,6 +5,7 @@ var aplicacion = new Vue({
         nombre: "",
         mail: "",
         passwd: "",
+        confPass: ""
     },
     methods: {
         enviar: function(){
@@ -13,6 +14,7 @@ var aplicacion = new Vue({
                 name: this.nombre,
                 email: this.mail,
                 password: this.passwd,
+                c_password: this.confPass
             })
             .then(response => {
                 console.log(response);
@@ -22,7 +24,7 @@ var aplicacion = new Vue({
             })
             .catch(error => {
                 console.log(error);
-                alert("fallo al loguear");
+                alert("¡fallo al registrar, revisa tu contraseña y correo!");
             });
         }
     }
