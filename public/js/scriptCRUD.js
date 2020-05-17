@@ -27,7 +27,8 @@ var elemento = new Vue({
         newNameCat: '',
         previewImage: null,
         fileName: '',
-        selectedFile: ''
+        selectedFile: '',
+        finalFileName: ''
     },
     created: function(){
         this.cargaRestaurantes();
@@ -36,6 +37,16 @@ var elemento = new Vue({
         this.cargaComentarios();
     },
     methods:{
+        //GENERA UN RANDOM STRING
+        makeRandName(){
+            var result           = '';
+            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for ( var i = 0; i < 5; i++ ) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+            return result;
+        },
         uploadImage(e){
             this.selectedFile = event.target.files[0]
             const image = e.target.files[0];
@@ -48,10 +59,13 @@ var elemento = new Vue({
                 this.previewImage = e.target.result;
                 console.log(this.previewImage);
             };
+            //GENERAMOS EL NOMBRE RANDOM
+            this.finalFileName = this.makeRandName() + this.selectedFile.name;
+            alert(this.finalFileName);
         },
         onUpload() {
             const formData = new FormData();
-            formData.append('image', this.selectedFile, this.selectedFile.name);
+            formData.append('image', this.selectedFile, this.finalFileName);
             axios.post('api/uploadFile', formData)
         },
         cargaRestaurantes: function(){
@@ -466,7 +480,7 @@ var elemento = new Vue({
                         city: ciudad,
                         description: descripcion,
                         phonenumber: telefono,
-                        photo: this.fileName
+                        photo: this.finalFileName
                     })
                     .then(response => {
                         console.log(response);

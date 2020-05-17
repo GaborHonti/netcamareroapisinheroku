@@ -12,7 +12,7 @@ class FileController extends Controller
     }
 
 
-    //TODO AÑADIR CAMBIO DE NOMBRE DE FOTO
+    //TODO AÑADIR CAMBIO DE NOMBRE DE FOTO ---> en el front se randomiza un nombre
 
 
     public function upload(Request $request){
