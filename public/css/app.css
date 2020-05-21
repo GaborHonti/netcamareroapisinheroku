@@ -91,6 +91,10 @@ body{
     padding-right: 0px !important;
 }
 
+.bgRed{
+    background-color: #ee2638 !important;
+}
+
 .align > p{
     text-align: center;
 }
@@ -159,6 +163,22 @@ body{
     background-size: cover;
 }
 
+.mainSuggestions{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    /* The image used */
+    background-image: url("../img/suggestion.jpg");
+
+    /* Set a specific height */
+    min-height: 140px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .portada{
     text-align: center;
 }
@@ -169,6 +189,31 @@ body{
     letter-spacing: 3px;
     font-size: 60px;
     font-family: 'Amatic SC', cursive;
+}
+.catch3{
+    /*margin-top: 12%;*/
+    color: white;
+    letter-spacing: 3px;
+    font-size: 60px;
+    font-family: 'Amatic SC', cursive;
+}
+.catch5{
+    /*margin-top: 12%;*/
+    color: white;
+    letter-spacing: 3px;
+    font-size: 24px;
+    font-family: 'Amatic SC', cursive;
+    text-align: left;
+}
+
+.catch4{
+    /*margin-top: 12%;*/
+    color: white;
+    letter-spacing: 3px;
+    font-size: 30px;
+    font-family: 'Amatic SC', cursive;
+    text-align: center;
+    color: #ee2638;
 }
 
 .catch2{
@@ -317,5 +362,17 @@ body{
 }
 
 .wColor{
+
+}
+
+footer{
     color: white;
+    background: black;
+    margin-bottom: 0px;
+}
+
+footer > p{
+    padding-bottom: 1.5%;
+    margin-bottom: 0px;
+    text-align: center;
 }

@@ -54,7 +54,7 @@
             </nav>
             <main class="contenedorAll">
                 <div class="container generalFont marginT">
-                    <h1 class="generalFont titleAll">Resultados de Búsqueda: </h1>
+                    <h1 class="generalFont titleAll">Resultados de Búsqueda: {{queEs}}</h1>
                     <div class="row">
                         <div v-for="(item, index) in rsdo" class="col-12 col-md-4 mb-3 mt-3 centrar">
                         <h3 class="fuente">{{item.name}}</h3>

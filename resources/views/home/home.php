@@ -74,11 +74,41 @@
 
                 </select>
                 <input type="text" class="inputText" v-model="valor">
-                <button type="button" class="btn btn-danger" @click="busca()">Buscar</button>
+                <a href="/busca"><button type="button" class="btn btn-danger" @click="busca()">Buscar</button></a>
             </div>
         </div>
     </div>
-    <div class="container main2">
+    <div class="container-fluid mainSuggestions">
+        <div class="row">
+            <div class="col-12 portada">
+                <h3 class="catch3">¿No Sabes Qué Elegir?</h3>
+                <p class="afterCatch">¡Echalé un vistazo a nuestras categorías y localidades!</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <h6 class="catch4">Nuestras Categorías:</h6>
+                <!-- VFOR DE TODAS LAS CATEGORÍAS -->
+                    <div v-for="cat in categorias" class="d-flex justify-content-between col-12">
+                        <p class="catch5">
+                            {{cat.name}}
+                        </p>
+                        <a href="/busca"><button type="button" class="btn btn-danger" @click="buscaCat(cat.name)">Buscar</button></a>
+                    </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <h6 class="catch4">Nuestras Localidades:</h6>
+                <!-- VFOR DE TODAS LAS LOCALIDADES -->
+                    <div v-for="loc in localidades" class="d-flex justify-content-between col-12">
+                        <p class="catch5">
+                            {{loc.name}}
+                        </p>
+                        <a href="/busca"><button type="button" class="btn btn-danger" @click="buscaLoc(loc.name)">Buscar</button></a>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid main2 bgRed">
         <div class="row">
             <div class="col-12">
             <h3 class="catch2">Selección</h3>
@@ -93,6 +123,9 @@
             </div>
         </div>
     </div>
+    <footer>
+        <p>Made By: Gábor Honti - 2020</p>
+    </footer>
 </div>
 
 <script src="https://unpkg.com/vue/dist/vue.js"></script>

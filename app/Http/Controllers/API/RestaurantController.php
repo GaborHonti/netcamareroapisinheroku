@@ -77,22 +77,32 @@ class RestaurantController extends Controller
 
     public function getLocalidades($criterio){
         //obtenemos localidad con en nombre introducido
-        $localidad = City::where('name',$criterio)->first();
 
-        if($localidad['id'] != null){
-            $restaurantes = Restaurant::where('city',$localidad['id'])->get();
+            $localidad = City::where('name',$criterio)->first();
 
-            return $restaurantes;
-        } else{
-            return "no";
-        }
+            if($localidad['id'] != null){
+                $restaurantes = Restaurant::where('city',$localidad['id'])->get();
+
+                return $restaurantes;
+            } else{
+                return "no";
+            }
+
 
     }
     public function getCategorias($criterio){
+        $categoria = Category::where('name',$criterio)->first();
 
+        if($categoria['id'] != null){
+            $categorias = Restaurant::where('category',$categoria['id'])->get();
+
+            return $categorias;
+        } else{
+            return "no";
+        }
     }
     public function getNombres($criterio){
-
+        return Restaurant::where('name',$criterio)->get();
     }
 
 

@@ -37,16 +37,16 @@
     </button>
     <div class="collapse navbar-collapse navi" id="navbarNav">
       <ul class="navbar-nav">
-      <li class="nav-item" v-if="esFav==0">
+      <li class="nav-item" v-if="esFav==-1 || esFav==0">
           <a class="nav-link" href="/login">Entrar</a>
         </li>
-        <li class="nav-item" v-if="esFav==0">
+        <li class="nav-item" v-if="esFav==-1 || esFav==0">
           <a class="nav-link" href="/registrar">Registrar</a>
         </li>
-        <li class="nav-item" v-if="esFav==-1 || esFav==1">
+        <li class="nav-item" v-if="esFav==1">
           <a class="nav-link" href="/profile">Perfil</a>
         </li>
-        <li class="nav-item" v-if="esFav==-1 || esFav==1">
+        <li class="nav-item" v-if="esFav==1">
           <a class="nav-link" href="#" @click="salir()">Salir</a>
         </li>
       </ul>

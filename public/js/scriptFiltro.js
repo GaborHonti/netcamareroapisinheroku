@@ -3,7 +3,8 @@ var app = new Vue({
     data: {
         logged: 0 , //por defecto no esta logueado
         valor: '',
-        rsdo : []
+        rsdo : [],
+        queEs: ''
     },
     created () {
         this.cargaFiltro();
@@ -12,6 +13,7 @@ var app = new Vue({
         if(token != null){
             this.logged = 1; //esta logged el user
         }
+        this.queEs = localStorage.getItem("val");
     },
     methods: {
         salir: function(){

@@ -30,6 +30,7 @@ var app = new Vue({
                     this.esFav = -1;
                 }
           })
+          //alert(this.esFav);
     },
     created(){
         this.id = window.location.pathname.split('/')[2];
