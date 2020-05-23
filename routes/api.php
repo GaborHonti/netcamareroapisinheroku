@@ -52,4 +52,6 @@ Route::get('localidad/{criterio}', 'API\RestaurantController@getLocalidades');
 Route::get('categoria/{criterio}', 'API\RestaurantController@getCategorias');
 Route::get('nombre/{criterio}', 'API\RestaurantController@getNombres');
 
+//ruta para cargar los comentarios de un restaurante en concreto
+Route::get('restaurants/comments/{idRest}' , 'API\RestaurantController@commentsGet');
 

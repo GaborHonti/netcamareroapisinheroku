@@ -42,11 +42,11 @@ class CommentController extends Controller
         $comment = json_decode($request->getContent(),true);
 
 
-        $restaurant = Restaurant::where('name',$comment['restaurant'])->get();
+        /*$restaurant = Restaurant::where('name',$comment['restaurant'])->get();
         $comment['restaurant'] = $restaurant[0]->id;
 
         $user = User::where('name',$comment['user'])->get();
-        $comment['user'] = $user[0]->id;
+        $comment['user'] = $user[0]->id;*/
 
         $crear = Comment::create($comment,true);
 

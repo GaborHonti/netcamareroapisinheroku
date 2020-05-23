@@ -37,16 +37,16 @@
     </button>
     <div class="collapse navbar-collapse navi" id="navbarNav">
       <ul class="navbar-nav">
-      <li class="nav-item" v-if="esFav==-1 || esFav==0">
+      <li class="nav-item" v-if="esFav==-1">
           <a class="nav-link" href="/login">Entrar</a>
         </li>
-        <li class="nav-item" v-if="esFav==-1 || esFav==0">
+        <li class="nav-item" v-if="esFav==-1">
           <a class="nav-link" href="/registrar">Registrar</a>
         </li>
-        <li class="nav-item" v-if="esFav==1">
+        <li class="nav-item" v-if="esFav==1 || esFav==0">
           <a class="nav-link" href="/profile">Perfil</a>
         </li>
-        <li class="nav-item" v-if="esFav==1">
+        <li class="nav-item" v-if="esFav==1 || esFav==0">
           <a class="nav-link" href="#" @click="salir()">Salir</a>
         </li>
       </ul>
@@ -84,6 +84,33 @@
 
             </div>
         </div>
+        <!-- APARTADO DE COMENTARIOS DE RESTAURANTES -->
+
+        <div class="row mainC ">
+
+            <div class="col-12">
+                <h1 class="ttle text-center">Comentarios</h1>
+            </div>
+
+            <div class="container" v-for="comment in comments">
+                <div class="col-12 rowComment">
+                <div class="flexft mtop">
+                    <img src="../img/defaultuser.png" class="profilepic">
+                    <h1 class="hello">{{comment.user.name}}</h1>
+                </div>
+                <p class="comm">{{comment.content}}</p>
+                </div>
+            </div>
+
+            <div class="container" v-if="esFav==1 || esFav==0">
+                <div class="col-12 rowComment">
+                    <h1 class="hello">Publica tu Comentario:</h1>
+                    <textarea name="comentarioArea" id="comentarioArea" cols="30" rows="10" v-model="commentContent"></textarea>
+                    <button class="btn btn-danger ml-4" @click="postComment()">Añadir Comentario</button>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     </div>
@@ -93,21 +120,3 @@
 <script src="/js/scriptShow.js"></script>
 </body>
 </html>
-
-<!--
-
- @if(auth()->user() != null)
-                            @if($restaurante->esFavorito($restaurante->id))
-                            <button class="btn btn-success rounded-pill"><a class="enlaceVer">Ya está en los favoritos!</a></button>
-                            @else
-                            <form action="{{ action('RestaurantController@addFav', ['restaurant' => $restaurante]) }}" method="POST">
-                            {{method_field('PUT')}}
-                            @csrf
-                            <button class="btn btn-danger rounded-pill"><a class="enlaceVer">Añadir a favoritos</a></button>
-                            </form>
-                            @endif
-                        @else
-                        <button class="btn btn-danger rounded-pill"><a class="enlaceVer" href="{{ url('/login') }}">Entra en tu cuenta para añadir a Favoritos</a></button>
-                        @endif
-
- -->

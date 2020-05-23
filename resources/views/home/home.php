@@ -50,6 +50,9 @@
         <li class="nav-item" v-if="logged==1">
           <a class="nav-link" href="#" @click="salir()">Salir</a>
         </li>
+        <li class="nav-item" v-if="logged==1">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -83,6 +86,7 @@
             <div class="col-12 portada">
                 <h3 class="catch3">¿No Sabes Qué Elegir?</h3>
                 <p class="afterCatch">¡Echalé un vistazo a nuestras categorías y localidades!</p>
+                <a href="/restaurants"><button type="button" class="btn btn-danger">Ver Todos los Restaurantes</button></a>
             </div>
         </div>
         <div class="row">
@@ -108,6 +112,7 @@
             </div>
         </div>
     </div>
+    <!--
     <div class="container-fluid main2 bgRed">
         <div class="row">
             <div class="col-12">
@@ -123,6 +128,7 @@
             </div>
         </div>
     </div>
+    -->
     <footer>
         <p>Made By: Gábor Honti - 2020</p>
     </footer>

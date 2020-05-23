@@ -7,6 +7,8 @@ use App\Restaurant;
 use App\Category;
 use App\City;
 use App\Fav;
+use App\Comment;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\RestaurantResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -165,5 +167,10 @@ class RestaurantController extends Controller
         }
 
         return $respuesta;
+    }
+
+    public function commentsGet($idRest){
+        $comment = Comment::where('restaurant' , $idRest)->get();
+        return CommentResource::collection($comment);
     }
 }
