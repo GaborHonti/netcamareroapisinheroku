@@ -270,6 +270,12 @@ body{
     text-align: center;
 }
 
+.titleAll2{
+    font-size: 48px;
+    color: white;
+    text-align: center;
+}
+
 .centrar{
     text-align: center;
 }
@@ -320,6 +326,7 @@ body{
     color: #ee2638;
 }
 
+
 .desc{
     margin-left: 1%;
 }
@@ -362,7 +369,7 @@ body{
 }
 
 .wColor{
-
+    color: white;
 }
 
 footer{

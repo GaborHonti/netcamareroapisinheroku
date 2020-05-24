@@ -4,7 +4,8 @@ var app = new Vue({
       info: 'LOADING...',
       token: '',
       favs: [],
-      logged: 0
+      logged: 0,
+      nombreNew: ''
     },
     created() {
         $('.editP').click();
@@ -45,6 +46,24 @@ var app = new Vue({
                     'Authorization':'Bearer '+this.token}})
                 .then(response => (this.favs = response.data.data))
             })
+        },
+        updateName: function(){
+            if(this.nombreNew.trim() != ''){
+                axios.put('/api/cambianombre',
+                /* Aqui va el contenido a enviar en el PUT */
+                { "name": this.nombreNew ,
+                  "id" : this.info.id},
+                { headers: { 'Accept': 'application/json', 'Authorization': 'Bearer ' + this.token } })
+                .then(response => {
+                    console.log(response)
+                    this.info.name = this.nombreNew;
+                })
+                .catch(() => {
+                    console.log(response)
+                })
+            }else{
+                alert("Por Favor introduce un nombre")
+            }
         },
         /*getFavs: function(){
             alert(this.info)

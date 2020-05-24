@@ -49,18 +49,25 @@
                     <li class="nav-item" v-if="logged==1">
                     <a class="nav-link" href="#" @click="salir()">Salir</a>
                     </li>
+                    <li class="nav-item" v-if="logged==1">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    </li>
                 </ul>
                 </div>
             </nav>
             <main class="contenedorAll">
                 <div class="container generalFont marginT">
                     <h1 class="generalFont titleAll">Resultados de Búsqueda: {{queEs}}</h1>
-                    <div class="row">
+                    <div class="row" v-if="rsdo != 'no'">
                         <div v-for="(item, index) in rsdo" class="col-12 col-md-4 mb-3 mt-3 centrar">
                         <h3 class="fuente">{{item.name}}</h3>
                         <img :src="item.photo" class="imgrest">
                         <button class="btn btn-danger mt-3" @click="moveURL(item.id)">Ver Restaurante</button>
                         </div>
+                    </div>
+
+                    <h1 class="generalFont titleAll2" v-else>lo sentimos, no mehos encontrado nada...</h1>
+
                     </div>
                 </div>
             </main>

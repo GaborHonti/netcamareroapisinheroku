@@ -49,6 +49,9 @@
         <li class="nav-item" v-if="esFav==1 || esFav==0">
           <a class="nav-link" href="#" @click="salir()">Salir</a>
         </li>
+        <li class="nav-item" v-if="esFav==1 || esFav==0">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
       </ul>
     </div>
 </nav>
@@ -108,6 +111,10 @@
                     <textarea name="comentarioArea" id="comentarioArea" cols="30" rows="10" v-model="commentContent"></textarea>
                     <button class="btn btn-danger ml-4" @click="postComment()">Añadir Comentario</button>
                 </div>
+            </div>
+
+            <div class="col-12" v-else>
+                <h1 class="ttle text-center">Logueate Para Agregar Comentarios</h1>
             </div>
 
         </div>

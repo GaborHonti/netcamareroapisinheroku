@@ -49,6 +49,9 @@
         <li class="nav-item" v-if="logged==1">
           <a class="nav-link" href="#" @click="salir()">Salir</a>
         </li>
+        <li class="nav-item" v-if="logged==1">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
       </ul>
     </div>
 </nav>

@@ -40,6 +40,9 @@
         <li class="nav-item" v-if="logged==1">
           <a class="nav-link" href="#" @click="salir()">Salir</a>
         </li>
+        <li class="nav-item" v-if="logged==1">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
       </ul>
     </div>
 </nav>
@@ -60,10 +63,10 @@
             <div class="container">
                 <div class="flexft mtop">
                     <img src="img/defaultuser.png" class="profilepic">
-                    <h1 class="hello">Bienvenido User!</h1>
+                    <h1 class="hello">Bienvenido {{info.name}}!</h1>
                 </div>
 
-                <p class="pG restaurantTitle">En estos menús encontrarás opciones útiles como ver tus restaurantes favoritos, historial de likes, y editar tu foto de perfil.</p>
+                <p class="pG restaurantTitle">En estos menús encontrarás opciones útiles como ver tus restaurantes favoritos y cambiar tu nombre de usuario.</p>
 
                 <ul class="nav nav-tabs menupoints">
                 <li><a data-toggle="tab" href="#menu1" class="editP">Editar Perfil</a></li>
@@ -73,8 +76,14 @@
 
                 <div class="tab-content">
                     <div id="menu1" class="tab-pane fade">
+                        <br>
+                    <!--
                     <br>
                     <button style="cursor:pointer" class="btn btn-danger text-center generalFont" onclick="window.location='/';">Redireccioname</button>
+                     -->
+                    <p class="pG wColor">Nombre de Usuario Actual: {{info.name}}</p>
+                    <span class="wColor">Nuevo Nombre de Usuario: </span><input type="text" v-model="nombreNew"> <br> <br>
+                    <button style="cursor:pointer" class="btn btn-danger text-center generalFont" @click="updateName()">Cambiar nombre</button>
                     </div>
                     <div id="menu2" class="tab-pane fade">
                         <div v-for="fav in favs">

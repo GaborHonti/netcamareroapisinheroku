@@ -38,6 +38,7 @@ Route::post('/login', 'API\AuthController@login');
 Route::middleware('auth:api')->group(function () {
     Route::get('userinfo', 'API\UserController@getUserInfo');
     Route::get('myFavs/{id}', 'API\FavController@getMyFavs');
+    Route::put('cambianombre', 'API\UserController@changeName');
 });
 
 //rutas para descargar y subir fotos de restaurantes
