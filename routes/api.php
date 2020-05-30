@@ -39,6 +39,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('userinfo', 'API\UserController@getUserInfo');
     Route::get('myFavs/{id}', 'API\FavController@getMyFavs');
     Route::put('cambianombre', 'API\UserController@changeName');
+    Route::post('/restaurants/like', 'API\LikeHistoryController@store');
 });
 
 //rutas para descargar y subir fotos de restaurantes
@@ -47,6 +48,8 @@ Route::post('uploadFile' , 'API\FileController@upload');
 
 //ruta para obtener si un restaurante es fav o no
 Route::get('restaurants/esFav/{idUser}/{idRest}' , 'API\RestaurantController@esFav');
+//ruta para obtener si hay like o no
+Route::get('restaurants/esLike/{idUser}/{idRest}' , 'API\LikeHistoryController@esLiked');
 
 //Rutas para buscar restaurantes segun: >>>>> localidad >>>> categoria >>>> nombre
 Route::get('localidad/{criterio}', 'API\RestaurantController@getLocalidades');
