@@ -103,4 +103,12 @@ class FavController extends Controller
             return "Se ha borrado con éxito";
         }
     }
+
+    public function borraFav($idUser,$idRest){
+        $fav = Fav::where('user' , $idUser)->where('restaurant' , $idRest)->first();
+
+        if($fav->delete()){
+            return "Se ha borrado con éxito";
+        }
+    }
 }

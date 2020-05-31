@@ -8,6 +8,8 @@ class Fav extends Model
 {
     protected $fillable = ['user', 'restaurant'];
 
+    protected $primaryKey = 'user';
+
     public function restaurantObject()
     {
         return $this->belongsTo('App\Restaurant', 'restaurant');

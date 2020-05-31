@@ -48,3 +48,4 @@ Route::get('/busca' , function(){
 Route::get('/restaurants/{id}' , function($id){
     return view('vueRestaurants.show', compact('id'));
 });
+
