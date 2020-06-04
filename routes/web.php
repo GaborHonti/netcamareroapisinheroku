@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home.home');
 });
-
+/*
 Route::get('/crudmenu', function () {
     return view('crud.crudmenu');
 });
@@ -47,5 +47,5 @@ Route::get('/busca' , function(){
 
 Route::get('/restaurants/{id}' , function($id){
     return view('vueRestaurants.show', compact('id'));
-});
+});*/
 
