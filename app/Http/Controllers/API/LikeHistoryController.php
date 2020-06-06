@@ -42,17 +42,25 @@ class LikeHistoryController extends Controller
 
         if($this->esLiked($like['user'], $like['restaurant']) == 0){
 
-        $crear = LikeHistory::create($like,true);
+        $crear = new LikeHistory();
 
-        $restaurant = Restaurant::where('id' , $like['restaurant'])->first();
+        $crear->user = $like['user'];
+        $crear->restaurant = $like['restaurant'];
 
-        $numLikes = $restaurant['likes'];
+        $crear->save();
+
+        $likeado = intval($like['restaurant']);
+
+        $restaurant = Restaurant::where('name' , $like['name'])->first();
+
+
+        $numLikes = intval($restaurant['likes']);
 
         $numLikes++;
 
         $restaurant->update(array('likes' => $numLikes));
 
-        return new LikeHistoryResource($crear);
+        return "Exito";
         } else{
             return "ya esta liked";
         }
@@ -107,9 +115,12 @@ class LikeHistoryController extends Controller
         //Desarrollar lógica para si hay like o no
         $respuesta = 0; //----> respuesta por defecto, no hay like, devuelve un 0
 
-        $restaurant = LikeHistory::where('user' , $idUser)->where('restaurant' , $idRest)->first();
+        $idUser = intval($idUser);
+        $idRest = intval($idRest);
 
-        if($restaurant['user'] != null){
+        $restaurant = LikeHistory::where('user' , intval($idUser))->where('restaurant' , intval($idRest))->first();
+
+        if(is_object($restaurant) != null){
             $respuesta = 1; // ----> si es liked
         }
 

@@ -69,16 +69,27 @@ class RestaurantController extends Controller
         $city = City::where('name',$restaurante['city'])->get();
         $restaurante['city'] = $city[0]->id;
         */
-        $restaurante['photo'] = 'restaurantimgs/' . $restaurante['photo'];
+
+        //comprobar existencia de imagen, si no existe moverlo a otra carpeta la imagen por defecto y hacerle copia
+        if($restaurante['photo'] != null){
+            $restaurante['photo'] = 'restaurantimgs/' . $restaurante['photo'];
+        } else{
+            $restaurante['photo'] = 'defectPhotos/defecto1.jpg';
+        }
+
         $crear = Restaurant::create($restaurante,true);
 
         return new RestaurantResource($crear);
+
     }
 
     //LÓGICAS PARA BUSCAR SEGÚN: >>>>> localidad >>>> categoria >>>> nombre
 
     public function getLocalidades($criterio){
         //obtenemos localidad con en nombre introducido
+
+            //
+            //City::whereRaw("UPPER(name) LIKE '%'". strtoupper($criterio)."'%'")->first();
 
             $localidad = City::where('name',$criterio)->first();
 
@@ -160,9 +171,9 @@ class RestaurantController extends Controller
         //Desarrollar lógica para si hay fav o no
         $respuesta = 0; //----> respuesta por defecto, no hay fav, devuelve un 0
 
-        $restaurant = Fav::where('user' , $idUser)->where('restaurant' , $idRest)->first();
+        $favorito = Fav::where('user' , $idUser)->where('restaurant' , $idRest)->first();
 
-        if($restaurant['user'] != null){
+        if(is_object($favorito)){
             $respuesta = 1; // ----> si es fav
         }
 

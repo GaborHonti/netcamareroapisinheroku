@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Restaurant extends Model
 {
 
-    protected $fillable = ['name', 'phonenumber', 'photo', 'description', 'city' , 'category' , 'likes'];
+    protected $fillable = ['name', 'phonenumber', 'photo', 'description', 'city' , 'category' , 'likes' , 'latitud' , 'longitud'];
 
     public function categoriaObject()
     {

@@ -32,6 +32,8 @@ class RestaurantResource extends JsonResource
                 'description' => $this->description,
                 'city' =>  $this->ciudadObject,// relación con ciudades
                 'category' =>  $this->categoriaObject, // relación con categorias
+                'latitud' => $this->latitud,
+                'longitud' => $this->longitud,
             /*],*/
 
         ];

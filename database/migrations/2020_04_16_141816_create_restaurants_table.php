@@ -24,6 +24,9 @@ class CreateRestaurantsTable extends Migration
             $table->integer('likes')->unsigned()->default('0');
             $table->integer('phonenumber')->unsigned();
             $table->longText('description');
+            //latitud y longitud
+            $table->float('latitud');
+            $table->float('longitud');
             $table->timestamps();
         });
     }

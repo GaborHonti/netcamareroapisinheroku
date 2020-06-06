@@ -14,6 +14,7 @@ class CreateLikehistoryTable extends Migration
     public function up()
     {
         Schema::create('likehistory', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->bigInteger('user')->unsigned();
             $table->bigInteger('restaurant')->unsigned();
             $table->timestamps();
